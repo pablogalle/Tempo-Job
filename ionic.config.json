@@ -1,0 +1,7 @@
+{
+  "name": "Tempo-Job",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
