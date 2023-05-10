@@ -1,13 +1,9 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <h1>Profile</h1>
+  <div *ngIf="userProfile">
+    <h2>Name: {{userProfile ? userProfile.name : null}}</h2>
+    <h2>Surname: {{userProfile.surname}}</h2>
+    <h2>Birth date: {{userProfile.birth_date | date : "dd-MM-yyyy"}}</h2>
+  </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
 </ion-content>
