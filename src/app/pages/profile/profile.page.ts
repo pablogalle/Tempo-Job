@@ -10,18 +10,15 @@ import {UserProfileImpl} from "../../implementations/UserProfileImpl";
 })
 export class ProfilePage implements OnInit {
 
-  userProfile!: UserProfile;
+  userProfile?: UserProfile;
 
   constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
-
-    this.loadUser();
-
   }
 
-  private loadUser() {
-    this.profileService.getUser('645bc3acb40d6aba9ec5d711').subscribe(
+  private loadUser(id : string) {
+    this.profileService.getUser(id).subscribe(
       data => {
         this.userProfile = new UserProfileImpl(data.id, data.username,data.name, data.surname, data.birth_date, data.scores)
       }

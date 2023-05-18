@@ -7,9 +7,9 @@ export class UserProfileImpl implements UserProfile{
   name: string;
   surname: string;
   birth_date: string;
-  scores: { username: string; score: string };
+  scores?: { username: string; score: string };
 
-  constructor(id: string, username: string, name: string, surname: string, birth_date: string, scores: { username: string; score: string }) {
+  constructor(id: string, username: string, name: string, surname: string, birth_date: string, scores?: { username: string; score: string }) {
     this.id = id;
     this.username = username;
     this.name = name;

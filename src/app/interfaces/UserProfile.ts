@@ -4,7 +4,7 @@ export interface UserProfile{
   surname: string,
   username: string,
   birth_date: string,
-  scores: {
+  scores?: {
     username: string,
     score: string
   }
