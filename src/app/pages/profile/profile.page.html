@@ -1,12 +1,26 @@
 <ion-content>
-  <h1>Profile</h1>
-  <div class="card bg-dark" *ngIf="userProfile">
-    <div class="card-header">
-      <h1 class="card-title">{{userProfile.name}}</h1>
-      <h2 class="card-subtitle">{{userProfile.name}} {{userProfile.surname}}</h2>
+  <div class="p-3" *ngIf="userProfile">
+    <div class="header">
+      <h1 class="username">{{userProfile.username!}}</h1>
+      <h2 class="fullname">{{userProfile.name!}} {{userProfile.surname}}</h2>
     </div>
-    <div class="card-content">
-      <button class="btn-secondary" (click)="signOutUser()"> Sign out</button>
+    <div class="content">
+      <button class="btn btn-secondary m-2" (click)="signOutUser()"> Sign out</button>
+
+      <!-- Job list -->
+      <h2 class="m-2">Published Jobs:</h2>
+      <div class="container" *ngIf="userJobList.length>0">
+        <div class="card bg-dark m-2" *ngFor="let job of userJobList">
+          <div class="card-header">
+            {{job.name}}
+          </div>
+        </div>
+      </div>
+      <div class="container"*ngIf="userJobList.length==0">
+        <small>No Jobs published</small>
+      </div>
+
+
     </div>
 
   </div>

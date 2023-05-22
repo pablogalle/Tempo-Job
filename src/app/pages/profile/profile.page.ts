@@ -5,15 +5,17 @@ import {UserProfileImpl} from "../../implementations/UserProfileImpl";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../services/authentication.service";
 import {UserAuth} from "../../interfaces/UserAuth";
+import {Job} from "../../interfaces/Job";
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
 })
-export class ProfilePage implements OnInit {
+export class ProfilePage implements OnInit  {
   userProfile?: UserProfile;
   userAuth?: UserAuth;
+  userJobList: Job[]  = [];
 
   constructor(
     private profileService: ProfileService,
@@ -24,6 +26,7 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
+    console.log('oninit')
     this.checkIfUserLogged()
   }
 
@@ -33,17 +36,25 @@ export class ProfilePage implements OnInit {
         this.userProfile = new UserProfileImpl(data.id, data.username, data.name, data.surname, data.birth_date, data.scores)
       }
     )
+    this.profileService.getJobsOfUser(userId).subscribe(
+      next => {
+        this.userJobList = next
+        console.log(this.userJobList)
+      }
+    )
+    console.log(this.userJobList)
   }
 
   async checkIfUserLogged() {
     this.userAuth = await this.authService.getLoggedInUser()
     if (!this.userAuth) {
-      this.router.navigate(['/profile', 'login'])
+      this.router.navigate(['login'])
     }
     this.loadUser(this.userAuth!.userDataId!)
   }
 
   signOutUser() {
     this.authService.clearLoggedInUser()
+    this.router.navigate(['login'], { replaceUrl: true });
   }
 }
