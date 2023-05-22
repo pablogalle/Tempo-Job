@@ -1,0 +1,16 @@
+h1{
+  text-align: center;
+  padding: 20px;
+}
+form{
+  margin: 20px;
+  text-align: center;
+  .col{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    label{
+      font-weight: bold;
+      margin-right: 10px;
+    }
+  }
+}

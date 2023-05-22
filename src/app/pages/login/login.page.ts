@@ -46,7 +46,6 @@ export class LoginPage implements OnInit {
           this.loginAttFailed = true
           console.log(data.status, data.statusText)
         }
-
       },
       (error) => {
         console.log("Error: ",error)
@@ -55,6 +54,6 @@ export class LoginPage implements OnInit {
   }
 
   navigateToRegister() {
-
+    this.router.navigate(['register'])
   }
 }

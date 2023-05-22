@@ -1,10 +1,8 @@
-export interface UserProfile{
-  id: string,
-  name: string,
-  surname: string,
-  username: string,
-  birth_date: string,
-  scores: {
+import {UserRegister} from "./UserRegister";
+
+export interface UserProfile extends UserRegister{
+  id?: string,
+  scores?: {
     username: string,
     score: string
   }

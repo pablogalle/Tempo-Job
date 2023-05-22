@@ -33,7 +33,7 @@ export class ProfilePage implements OnInit  {
   private loadUser(userId: string) {
     this.profileService.getUser(userId).subscribe(
       data => {
-        this.userProfile = new UserProfileImpl(data.id, data.username, data.name, data.surname, data.birth_date, data.scores)
+        this.userProfile = new UserProfileImpl(data.id!, data.username, data.name, data.surname, data.birth_date, data.scores!)
       }
     )
     this.profileService.getJobsOfUser(userId).subscribe(
