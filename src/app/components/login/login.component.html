@@ -11,6 +11,9 @@
         <label for="password">Password: </label>
         <input id="password" type="password" formControlName="password">
       </div>
+      <div class="col-12 error-message">
+        <small *ngIf="loginAttFailed">Login Failed</small>
+      </div>
       <div class="col col-6">
         <button class="btn btn-secondary btn-signup">Sign Up</button>
       </div>

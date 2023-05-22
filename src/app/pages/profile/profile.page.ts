@@ -3,6 +3,8 @@ import {ProfileService} from "../../services/profile.service";
 import {UserProfile} from "../../interfaces/UserProfile";
 import {UserProfileImpl} from "../../implementations/UserProfileImpl";
 import {ActivatedRoute, Router} from "@angular/router";
+import {AuthenticationService} from "../../services/authentication.service";
+import {UserAuth} from "../../interfaces/UserAuth";
 
 @Component({
   selector: 'app-profile',
@@ -10,20 +12,19 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
-  userId?: string;
   userProfile?: UserProfile;
+  userAuth?: UserAuth;
 
   constructor(
     private profileService: ProfileService,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private router: Router,
+    private authService: AuthenticationService
+  ) {
+  }
 
   ngOnInit() {
-
-    if (!this.userProfile) this.router.navigate(['profile/login'])
-
+    this.checkIfUserLogged()
   }
 
   private loadUser(userId: string) {
@@ -32,5 +33,17 @@ export class ProfilePage implements OnInit {
         this.userProfile = new UserProfileImpl(data.id, data.username, data.name, data.surname, data.birth_date, data.scores)
       }
     )
+  }
+
+  async checkIfUserLogged() {
+    this.userAuth = await this.authService.getLoggedInUser()
+    if (!this.userAuth) {
+      this.router.navigate(['/profile', 'login'])
+    }
+    this.loadUser(this.userAuth!.userDataId!)
+  }
+
+  signOutUser() {
+    this.authService.clearLoggedInUser()
   }
 }

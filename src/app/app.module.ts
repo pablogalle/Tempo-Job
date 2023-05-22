@@ -4,6 +4,7 @@ import {RouteReuseStrategy} from '@angular/router';
 import {ReactiveFormsModule} from "@angular/forms";
 
 import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
+import {IonicStorageModule} from "@ionic/storage-angular";
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -11,7 +12,15 @@ import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
+
+  ],
   providers: [{provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent],
 })

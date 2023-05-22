@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {AuthenticationService} from "../../services/authentication.service";
 import {UserAuth} from "../../interfaces/UserAuth";
-import {UserProfile} from "../../interfaces/UserProfile";
 import {Router} from "@angular/router";
 
 @Component({
@@ -13,8 +12,7 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 
   userAuth?: UserAuth;
-
-  userId?: string;
+  loginAttFailed = false;
   authenticationForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')
@@ -27,9 +25,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.userId){
-
-    }
   }
 
   createFromForm(): UserAuth {
@@ -43,14 +38,19 @@ export class LoginComponent implements OnInit {
   attemptLogin() {
     const userAuth = this.createFromForm();
     this.authService.postAuth(userAuth).subscribe(
-      (data) => {
-        this.userId = data._id!
-        console.log(data)
-        console.log(data._id)
-        this.router.navigate([''])
-      },
-      (error)=>{console.log(error)}
+      data => {
+        if (data.status == 200){
+          this.authService.setLoggedInUser(data.body!)
+          this.router.navigate([''])
+        }else {
+          this.loginAttFailed = true
+          console.log(data.status, data.statusText)
+        }
 
+      },
+      (error) => {
+        console.log("Error: ",error)
+      }
     );
   }
 }

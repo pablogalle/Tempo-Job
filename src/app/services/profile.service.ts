@@ -11,6 +11,6 @@ export class ProfileService {
   constructor(private http: HttpClient) { }
 
   getUser(id: string){
-    return this.http.get<UserProfile>(this.URI+'/users/'+id);
+    return this.http.get<UserProfile>(this.URI+'users/'+id);
   }
 }
