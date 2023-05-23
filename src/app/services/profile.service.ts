@@ -5,6 +5,7 @@ import {UserProfile} from "../interfaces/UserProfile";
 import {Job} from "../interfaces/Job";
 import {Observable} from "rxjs";
 import {UserRegister} from "../interfaces/UserRegister";
+import {UserAuth} from "../interfaces/UserAuth";
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class ProfileService {
     return this.http.get<UserProfile>(this.URI+'users/'+id);
   }
 
-  createUser(user: UserRegister): Observable<HttpResponse<UserRegister>>{
-    return this.http.post<HttpResponse<UserRegister>>(this.URI+'users/', user);
+  createUser(user: UserRegister): Observable<HttpResponse<UserAuth>>{
+    return this.http.post<UserAuth>(this.URI+'users/', user, {observe: 'response'});
   }
 
   getJobsOfUser(id: string): Observable<Job[]>{

@@ -26,29 +26,26 @@ export class ProfilePage implements OnInit  {
   }
 
   ngOnInit() {
-    console.log('oninit')
     this.checkIfUserLogged()
   }
 
   private loadUser(userId: string) {
     this.profileService.getUser(userId).subscribe(
       data => {
-        this.userProfile = new UserProfileImpl(data.id!, data.username, data.name, data.surname, data.birth_date, data.scores!)
+        this.userProfile = new UserProfileImpl(data.id!, data.username, data.email, data.name, data.surname, data.birth_date, data.scores!)
       }
     )
     this.profileService.getJobsOfUser(userId).subscribe(
       next => {
         this.userJobList = next
-        console.log(this.userJobList)
       }
     )
-    console.log(this.userJobList)
   }
 
   async checkIfUserLogged() {
     this.userAuth = await this.authService.getLoggedInUser()
     if (!this.userAuth) {
-      this.router.navigate(['login'])
+      this.router.navigate(['login'], { replaceUrl: true })
     }
     this.loadUser(this.userAuth!.userDataId!)
   }

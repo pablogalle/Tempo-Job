@@ -4,6 +4,8 @@ import {Router} from "@angular/router";
 import {UserProfile} from "../../interfaces/UserProfile";
 import {ProfileService} from "../../services/profile.service";
 import {UserRegister} from "../../interfaces/UserRegister";
+import {AuthenticationService} from "../../services/authentication.service";
+import {UserAuth} from "../../interfaces/UserAuth";
 
 @Component({
   selector: 'app-register',
@@ -16,6 +18,7 @@ export class RegisterPage implements OnInit {
     password: new FormControl(''),
     surname: new FormControl(''),
     username: new FormControl(''),
+    email: new FormControl(''),
     birthDate: new FormControl('')
   });
 
@@ -23,7 +26,8 @@ export class RegisterPage implements OnInit {
 
   constructor(
     private router: Router,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -33,6 +37,7 @@ export class RegisterPage implements OnInit {
     return {
       ...this.userRegister,
       username: this.registrationForm.get(['username'])!.value,
+      email: this.registrationForm.get(['email'])!.value,
       name: this.registrationForm.get(['name'])!.value,
       surname: this.registrationForm.get(['surname'])!.value,
       password: this.registrationForm.get(['password'])!.value,
@@ -45,13 +50,19 @@ export class RegisterPage implements OnInit {
     console.log(userProfile)
 
     this.profileService.createUser(userProfile).subscribe(
-      next => {
-        if (next.status == 200){
-
+      data => {
+        console.log(data.status);
+        if (data.status == 200){
+          console.log(data.body)
+          this.authService.setLoggedInUser(data.body!)
+          this.router.navigate(['tabs'])
         }
       }
     )
+  }
 
+  cancelRegister() {
+    this.router.navigate(['login'])
 
   }
 }
