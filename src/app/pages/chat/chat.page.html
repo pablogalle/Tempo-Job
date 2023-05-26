@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-button>
+    <ion-title>
+      Chat Instantáneo
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let message of chatMessages">
+      <ion-label>{{ message.senderUsername }}:</ion-label>
+      <ion-text>{{ message.messageText }}</ion-text>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-input [(ngModel)]="newMessage" placeholder="Write your message..."></ion-input>
+    <ion-button expand="block" (click)="sendMessage()">Enviar</ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="danger" (click)="cancel()">Back</ion-button>
+    </ion-buttons>
+    <ion-title>{{job.name}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="confirm()">Apply</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-text>{{job.description}}</ion-text>
+</ion-content>

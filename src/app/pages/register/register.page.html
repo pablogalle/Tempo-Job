@@ -1,47 +1,37 @@
 <ion-content>
   <h1> Sign Up</h1>
-  <form [formGroup]=registrationForm>
-    <div class="row">
-      <div class="col col-12">
-        <label for="username">Username: </label>
-        <input id="username" type="text" formControlName="username">
-      </div>
-
-      <div class="col col-12">
-        <label for="email">Email: </label>
-        <input id="email" type="email" formControlName="email">
-      </div>
-
-      <div class="col col-12">
-        <label for="name">Name: </label>
-        <input id="name" type="text" formControlName="name">
-      </div>
-      <div class="col col-12">
-        <label for="surname">Surname: </label>
-        <input id="surname" type="text" formControlName="surname">
-      </div>
-
-      <div class="col col-12">
-        <label for="password">Password: </label>
-        <input id="password" type="password" formControlName="password">
-      </div>
+  <form [formGroup]=registrationForm! >
+      <ion-item>
+        <ion-input labelPlacement="stacked" label="Username" placeholder="Enter username" formControlName="username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input labelPlacement="stacked" label="Email" placeholder="email@domain.com" formControlName="email" type="email" errorText="Invalid email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input labelPlacement="stacked" label="Name" placeholder="Enter name" formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input labelPlacement="stacked" label="Surname" placeholder="Enter surname" formControlName="surname"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input labelPlacement="stacked" label="Password" placeholder="Enter password" formControlName="password" type="password" errorText="Password must contain at least 8 characters"></ion-input>
+      </ion-item>
       <!-- ¿Confirm password? -->
+      <ion-item>
+        <ion-input labelPlacement="stacked" label="Birth Date" placeholder="Enter password" formControlName="birthDate" type="date" errorText="Invalid date"></ion-input>
+      </ion-item>
 
-      <div class="col col-12">
-        <label for="birthDate">Date of Birth: </label>
-        <input id="birthDate" type="date" formControlName="birthDate">
-      </div>
+      <ion-item>
+        <ion-buttons slot="start">
+          <ion-button color="danger" (click)="cancelRegister()">Cancel</ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button color="primary" (click)="attemptRegister()">Sign Up</ion-button>
+        </ion-buttons>
+      </ion-item>
 
-
-      <div class="col col-6">
-        <button class="btn btn-secondary btn-cancel" (click)="cancelRegister()">Cancel</button>
-      </div>
-
-      <div class="col col-6">
-        <button class="btn btn-secondary btn-register" (click)="attemptRegister()">Register</button>
-      </div>
-    </div>
-
-
+      <ion-item *ngIf="registerFail">
+        <ion-text color="danger"> Registration Failed</ion-text>
+      </ion-item>
   </form>
 </ion-content>

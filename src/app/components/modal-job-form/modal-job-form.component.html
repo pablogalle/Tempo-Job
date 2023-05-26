@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>New Job</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Create</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]=jobForm >
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Enter Name" placeholder="Job name" formControlName="name" [min]="5"
+                 [max]="100"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Enter Description " placeholder="Job description"
+                 formControlName="description" [min]="100" [max]="2000"></ion-input>
+    </ion-item>
+  </form>
+</ion-content>

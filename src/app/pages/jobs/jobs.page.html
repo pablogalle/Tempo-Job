@@ -11,12 +11,21 @@
         <ion-card-title><h1>{{job.name}}</h1></ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <ion-text>{{job.description}}</ion-text>
-        <ion-button class="ion-apply-button"></ion-button>
+        <div class="row">
+          <div class="col">
+            <ion-text>{{job.description}}</ion-text>
+          </div>
+          <div class="col-2">
+            <ion-fab-button class="ion-apply-button" (click)="openJobInfo(job._id!)">
+              <ion-icon name="information" ></ion-icon>
+            </ion-fab-button>
+          </div>
+        </div>
       </ion-card-content>
     </ion-card>
 
   </ion-list>
+
   <ion-infinite-scroll threshold="100px"
                        (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content

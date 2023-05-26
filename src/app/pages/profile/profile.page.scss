@@ -1,3 +1,24 @@
-.jobs-list{
+.jobs-list, .user-info{
   border-radius: 15px;
 }
+
+.no-jobs-msg{
+  padding: 1em;
+  text-align: center;
+
+}
+
+ion-card-title h1, ion-card-subtitle{
+  text-align: center;
+}
+
+.ion-delete-button{
+  margin-left: auto;
+  width: 2.5em;
+  height: 2.5em;
+  ion-icon{
+    width: 1em;
+    height: 1em;
+  }
+}
+

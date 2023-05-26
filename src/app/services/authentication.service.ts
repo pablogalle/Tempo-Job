@@ -36,7 +36,7 @@ export class AuthenticationService {
 
   }
 
-  async getLoggedInUser() {
+  async getLoggedInUser(): Promise<UserAuth> {
     return await this.storage.get(USER_KEY);
   }
 

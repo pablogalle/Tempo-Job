@@ -7,9 +7,10 @@ export class UserAuthImpl implements UserAuth{
   userDataId: string;
 
 
-  constructor(username: string, password:string) {
+  constructor(username: string, password:string, userId:string) {
     this.username = username;
     this.password = password;
+    this.userDataId = userId;
   }
 
 }

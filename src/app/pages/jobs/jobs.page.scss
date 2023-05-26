@@ -1,0 +1,15 @@
+.ion-apply-button{
+  margin-left: auto;
+  width: 2.5em;
+  height: 2.5em;
+  ion-icon{
+    width: 1em;
+    height: 1em;
+  }
+}
+
+ion-modal {
+  --height: 50%;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}

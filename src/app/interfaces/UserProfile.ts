@@ -6,4 +6,8 @@ export interface UserProfile extends UserRegister{
     username: string,
     score: string
   }
+  chats?:[{
+    chatId: string,
+    username: string
+  }]
 }

@@ -23,6 +23,10 @@ export class ProfileService {
   }
 
   getJobsOfUser(id: string): Observable<Job[]>{
-    return this.http.get<Job[]>(this.URI+'jobs/'+id);
+    return this.http.get<Job[]>(this.URI+'jobs/userJobs/'+id);
+  }
+
+  deleteJob(id: string){
+    return this.http.delete<Job[]>(this.URI+'jobs/'+id);
   }
 }

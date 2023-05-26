@@ -9,9 +9,11 @@ import {IonicStorageModule} from "@ionic/storage-angular";
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from "@angular/common/http";
+import {ModalJobFormComponent} from "./components/modal-job-form/modal-job-form.component";
+import {ModalJobInfoComponent} from "./components/modal-job-info/modal-job-info.component";
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ModalJobFormComponent, ModalJobInfoComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

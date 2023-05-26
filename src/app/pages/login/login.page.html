@@ -3,25 +3,23 @@
 
   <form [formGroup]=authenticationForm>
     <div class="row">
-      <div class="col col-12">
-        <label for="name">Username: </label>
-        <input id="name" type="text" formControlName="username">
-      </div>
-      <div class="col col-12">
-        <label for="password">Password: </label>
-        <input id="password" type="password" formControlName="password">
-      </div>
+      <ion-item>
+        <ion-input labelPlacement="stacked" label="Username" placeholder="Enter username" formControlName="username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input labelPlacement="stacked" label="Password" placeholder="Enter password" formControlName="password" type="password"></ion-input>
+      </ion-item>
       <div class="col-12 error-message">
         <small *ngIf="loginAttFailed">Login Failed</small>
       </div>
-      <div class="col col-6">
-        <button class="btn btn-secondary btn-signup" (click)="navigateToRegister()">Sign Up</button>
-      </div>
-      <div class="col col-6">
-        <button class="btn btn-secondary btn-login" (click)="attemptLogin()">Log In</button>
-      </div>
+      <ion-item>
+        <ion-buttons slot="start">
+          <ion-button (click)="navigateToRegister()">Sign Up</ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button color="" (click)="attemptLogin()">Log In</ion-button>
+        </ion-buttons>
+      </ion-item>
     </div>
-
   </form>
-
 </ion-content>

@@ -29,7 +29,6 @@ export class LoginPage implements OnInit {
 
   createFromForm(): UserAuth {
     return {
-      ...this.userAuth,
       username: this.authenticationForm.get(['username'])!.value,
       password: this.authenticationForm.get(['password'])!.value
     }

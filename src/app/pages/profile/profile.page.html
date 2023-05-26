@@ -1,36 +1,48 @@
 <ion-content>
   <div class="p-4" *ngIf="userProfile">
-    <div class="header ">
-      <h1 class="username">{{userProfile.username!}}</h1>
-      <h2 class="fullname">{{userProfile.name!}} {{userProfile.surname}}</h2>
-    </div>
-    <div class="content my-4">
+    <ion-list class="jobs-list">
+      <ion-card class="user-info">
+        <ion-card-header>
+          <ion-card-title><h1>{{userProfile.username}}</h1></ion-card-title>
+          <ion-card-subtitle>{{userProfile.name}} {{userProfile.surname}}</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+      <ion-list-header>
+        <ion-text class="fw-bold fs-6 m-2">Published Jobs:</ion-text>
+      </ion-list-header>
+
       <!-- Job list -->
+        <ion-card *ngFor="let job of userJobList">
+          <ion-card-header>
+            <ion-card-title> {{job.name}} </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="row">
+              <div class="col">
+                <ion-text>{{job.description}}</ion-text>
+              </div>
+              <div class="col-2">
+                <ion-fab-button id="present-delete-alert" class="ion-delete-button" color="danger" (click)="jobToDelete = job || undefined">
+                  <ion-icon name="trash" ></ion-icon>
+                </ion-fab-button>
+              </div>
+            </div>
+            <ion-alert
+              trigger="present-delete-alert"
+              header="Confirm Delete"
+              [buttons]="alertButtons"
+              (didDismiss)="setResult($event)"
+            ></ion-alert>
+          </ion-card-content>
+        </ion-card>
 
-      <ion-list class="jobs-list">
-        <ion-list-header>
-          <h2 class="m-2">Published Jobs:</h2>
-        </ion-list-header>
-        <div class="container" *ngIf="userJobList.length>0">
-          <ion-card *ngFor="let job of userJobList">
-            <ion-card-header>
-              <ion-card-title> {{job.name}} </ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-              {{job.description}}
-            </ion-card-content>
-          </ion-card>
-
-        </div>
-      </ion-list>
-
-      <div class="container" *ngIf="userJobList.length==0">
+      <div class="no-jobs-msg " *ngIf="userJobList.length==0">
         <small>No Jobs published</small>
       </div>
-    </div>
+    </ion-list>
   </div>
 
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button>
       <ion-icon name="ellipsis-vertical"></ion-icon>
     </ion-fab-button>
@@ -39,12 +51,13 @@
         <ion-icon name="log-out-outline" color="danger" (click)="signOutUser()"></ion-icon>
       </ion-fab-button>
       <ion-fab-button>
-        <ion-icon name="add"></ion-icon>
+        <ion-icon name="add" color="success" (click)="openJobModal()"></ion-icon>
       </ion-fab-button>
       <ion-fab-button>
         <ion-icon name="cog-outline"></ion-icon>
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
+
 
 </ion-content>
