@@ -3,7 +3,6 @@ import {Chat} from "../../interfaces/Chat";
 import {ChatService} from "../../services/chat.service";
 import {AuthenticationService} from "../../services/authentication.service";
 import {UserAuth} from "../../interfaces/UserAuth";
-import {subway} from "ionicons/icons";
 import {Router} from "@angular/router";
 
 @Component({
@@ -15,6 +14,7 @@ export class ChatsPage implements OnInit {
 
   chats: Chat[] = []
   userId = '';
+  filterText = '';
 
   constructor(
     private chatService: ChatService,
@@ -39,7 +39,13 @@ export class ChatsPage implements OnInit {
     )
   }
 
-  navigateToChat(_id: any) {
-    this.router.navigate(['/chats',_id])
+  navigateToChat(chat: Chat) {
+    let userChat = chat.users.contractor.userId === this.userId ? chat.users.appliant.username : chat.users.contractor.username
+    this.router.navigate(['/chats',chat._id], {state: {username: userChat}})
+  }
+
+
+  search(event: any) {
+    this.filterText = event.detail.value
   }
 }

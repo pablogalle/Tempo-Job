@@ -39,8 +39,9 @@ export class LoginPage implements OnInit {
     this.authService.postAuth(userAuth).subscribe(
       data => {
         if (data.status === 200){
-          this.authService.setLoggedInUser(data.body!)
-          this.router.navigate(['tabs'])
+          this.authService.setLoggedInUser(data.body!).then(
+            () => this.router.navigate(['tabs'])
+          )
         }else {
           this.loginAttFailed = true
           console.log(data.status, data.statusText)

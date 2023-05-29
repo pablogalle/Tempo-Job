@@ -19,6 +19,7 @@ export class JobsPage implements OnInit {
   @ViewChild(IonInfiniteScroll, {static: false}) infiniteScroll!: IonInfiniteScroll;
   data: Job[] = [];
   jobList: Job[] = []
+  filterText = ''
 
   constructor(
     private jobService: JobService,
@@ -50,7 +51,7 @@ export class JobsPage implements OnInit {
         this.infiniteScroll.disabled = true;
         return;
       }
-      this.jobList.push(...this.data.splice(0, 3));
+      this.jobList.push(...this.data.splice(0, 5));
 
       event.target.complete();
     }, 1000);
@@ -78,5 +79,9 @@ export class JobsPage implements OnInit {
         err => console.log(err)
       )
     }
+  }
+
+  search(event: any) {
+    this.filterText = event.detail.value;
   }
 }

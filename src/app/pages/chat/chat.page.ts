@@ -5,7 +5,7 @@ import {ChatMessageImpl} from "../../implementations/ChatMessageImpl";
 import {AuthenticationService} from "../../services/authentication.service";
 import {UserAuthImpl} from "../../implementations/UserAuthImpl";
 import {UserAuth} from "../../interfaces/UserAuth";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-chat',
@@ -15,6 +15,7 @@ import {ActivatedRoute} from "@angular/router";
 export class ChatPage implements OnInit {
 
   chatId: string = '';
+  userChat = ''
   chatMessages: ChatMessage[] = []
   newMessage: string = ''
   userAuth?: UserAuth ;
@@ -22,11 +23,13 @@ export class ChatPage implements OnInit {
   constructor(
     private chatService: ChatService,
     private authService: AuthenticationService,
+    private router: Router,
     private activatedRoute: ActivatedRoute
     ) {
   }
 
   ngOnInit() {
+
     this.loadMessages()
   }
 
@@ -52,5 +55,9 @@ export class ChatPage implements OnInit {
       )
       this.newMessage = '';
     }
+  }
+
+  navigateBack() {
+    this.router.navigate(['tabs', 'chats'])
   }
 }

@@ -49,4 +49,7 @@ export class ModalJobFormComponent {
     }
   }
 
+  cancel() {
+    return this.modalCtrl.dismiss(null, 'cancel');
+  }
 }

@@ -1,11 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>*** Añadir buscador con filtros ***</ion-title>
+    <ion-searchbar animated="true" (ionChange)="search( $event)">
+    </ion-searchbar>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-list>
-    <ion-card *ngFor="let job of jobList">
+    <ion-card *ngFor="let job of jobList | jobsFilter: filterText">
       <ion-card-header>
         <ion-label>{{job.creator.username}}</ion-label>
         <ion-card-title><h1>{{job.name}}</h1></ion-card-title>

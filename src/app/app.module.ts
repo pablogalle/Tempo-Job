@@ -13,18 +13,19 @@ import {ModalJobFormComponent} from "./components/modal-job-form/modal-job-form.
 import {ModalJobInfoComponent} from "./components/modal-job-info/modal-job-info.component";
 
 @NgModule({
-  declarations: [AppComponent, ModalJobFormComponent, ModalJobInfoComponent],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(),
-    IonicStorageModule.forRoot(),
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule
+    declarations: [AppComponent, ModalJobFormComponent, ModalJobInfoComponent],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot(),
+        IonicStorageModule.forRoot(),
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule
 
-  ],
-  providers: [{provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
-  bootstrap: [AppComponent],
+    ],
+    providers: [{provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
+    bootstrap: [AppComponent],
+    exports: []
 })
 export class AppModule {
 }

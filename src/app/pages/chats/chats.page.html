@@ -1,14 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>*** Buscador por username ***</ion-title>
+    <ion-searchbar animated="true" (ionChange)="search( $event)">
+    </ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list *ngIf="chats">
-    <ion-item *ngFor="let chat of chats" (click)="navigateToChat(chat._id)">
+    <ion-item *ngFor="let chat of chats | chatsFilter: filterText" (click)="navigateToChat(chat)" class="py-2" lines="full">
       <ion-avatar slot="start">
         <!-- Foto de perfil -->
+        <img src="./assets/AvatarPlaceholder.png" alt="">
       </ion-avatar>
       <ion-label>{{chat.users.contractor.userId === userId ? chat.users.appliant.username : chat.users.contractor.username}}</ion-label>
     </ion-item>
