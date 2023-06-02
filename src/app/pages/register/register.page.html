@@ -1,37 +1,46 @@
 <ion-content>
   <h1> Sign Up</h1>
-  <form [formGroup]=registrationForm! >
-      <ion-item>
-        <ion-input labelPlacement="stacked" label="Username" placeholder="Enter username" formControlName="username"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input labelPlacement="stacked" label="Email" placeholder="email@domain.com" formControlName="email" type="email" errorText="Invalid email"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input labelPlacement="stacked" label="Name" placeholder="Enter name" formControlName="name"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input labelPlacement="stacked" label="Surname" placeholder="Enter surname" formControlName="surname"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input labelPlacement="stacked" label="Password" placeholder="Enter password" formControlName="password" type="password" errorText="Password must contain at least 8 characters"></ion-input>
-      </ion-item>
-      <!-- ¿Confirm password? -->
-      <ion-item>
-        <ion-input labelPlacement="stacked" label="Birth Date" placeholder="Enter password" formControlName="birthDate" type="date" errorText="Invalid date"></ion-input>
-      </ion-item>
+  <form [formGroup]=registrationForm!>
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Username" placeholder="Enter username"
+                 formControlName="username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Email" placeholder="email@domain.com" formControlName="email"
+                 type="email" errorText="Invalid email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Name" placeholder="Enter name" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Surname" placeholder="Enter surname"
+                 formControlName="surname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Password" placeholder="Enter password" formControlName="password"
+                 type="password" errorText="Password must contain at least 8 characters"></ion-input>
+    </ion-item>
+    <!-- ¿Confirm password? -->
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Birth Date" placeholder="Enter password" formControlName="birthDate"
+                 type="date" errorText="Invalid date"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-buttons slot="start">
-          <ion-button color="danger" (click)="cancelRegister()">Cancel</ion-button>
-        </ion-buttons>
-        <ion-buttons slot="end">
-          <ion-button color="primary" (click)="attemptRegister()">Sign Up</ion-button>
-        </ion-buttons>
-      </ion-item>
+    <ion-item>
+      <ion-buttons slot="start">
+        <ion-button color="danger" (click)="cancelRegister()">Cancel</ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button color="primary" (click)="attemptRegister()">Sign Up</ion-button>
+      </ion-buttons>
+    </ion-item>
 
-      <ion-item *ngIf="registerFail">
-        <ion-text color="danger"> Registration Failed</ion-text>
-      </ion-item>
+    <ion-item *ngIf="badRegister">
+      <ion-text color="danger"> Username or email already registered.</ion-text>
+    </ion-item>
+
+    <ion-item *ngIf="registerFail">
+      <ion-text color="danger"> Registration Failed</ion-text>
+    </ion-item>
   </form>
 </ion-content>

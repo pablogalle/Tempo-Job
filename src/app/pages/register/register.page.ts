@@ -24,6 +24,7 @@ export class RegisterPage implements OnInit {
 
   userRegister?: UserRegister;
   registerFail: boolean = false;
+  badRegister: boolean = false;
 
   constructor(
     private router: Router,
@@ -93,7 +94,10 @@ export class RegisterPage implements OnInit {
           this.router.navigate(['tabs'])
         }
       },
-      error => {this.registerFail = true}
+      error => {
+        if (error.status == 400) this.badRegister = true
+        else this.registerFail = true
+      }
     )
   }
 
